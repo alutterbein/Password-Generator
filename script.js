@@ -1,54 +1,44 @@
-// Assignment Code
+//adding button push
 var generateBtn = document.querySelector("#generate");
+generateBtn.addEventListener("click", askPassword);
+//this function prompts user and creates the password on button push
+function askPassword() {
+var isCharlength = prompt("Choosed a character length between 8 and 128 characters")
+var isLowercase = confirm("Do you want lower case letters?");
+var isUppercase = confirm("Do you want uppercase letters?");
+var isNumber = confirm("Do you want numbers?");
+var isSpecial = confirm("Do you want special characters?");
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+//empty array
+var finalPassword = []
+//4 arrays of choices
+var lowercase = "abcdefghijklmnopqrstuvwxyz".split("");
+var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var number = "1234567890".split("");
+var specials = "!@#$%^&*_+".split("");
 
-  passwordText.value = password;
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
-
-
-//our 4 arrays of choices
-var lowercase = "abcdefghijklmnopqrstuvwxyz".split("")
-var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")
-var number = "1234567890".split("")
-var specials = "!@#$%^&*_+".split("")
-
-//confirmation from user
-var isLowercase = confirm("Do you want lower case letters?")
-var isUppercase = confrim("DO you want uppercase letters?")
-var isNumber = confirm("Do you want numbers?")
-var isSpecial = confirm("Do you want special characters?")
-
-//you could also just write | if (islowercase) |  js is looking to see if isLowercase is ture regardless
+//creating the pw from filling the empty array
+//I need to account for characters.. mathmatically, each step needs to be done ischarlength x 0.25 times
+//isCharlength *.25(isCharlength) *25%(isCharlength)
 if (isLowercase == true) {
-  var randomCharacter = math.floor(math.random()*26)
-  finalPassword.push(lowercase(randomCharacter))
-}
-
-if (isUppercase== true) {
-  var randomCharacter = math.floor(math.random()*26)
-  finalPassword.push(uppercase(randomCharacter))
-}
-if (isNUmber == true) {
-  var randomCharacter = math.floor(math.random()*10)
-  finalPassword.push(lowercase(randomCharacter))
-}
+  var randomCharacter = Math.floor(Math.random()*26)
+  finalPassword.push(lowercase[randomCharacter])
+};
+if (isUppercase == true) {
+  var randomCharacter = Math.floor(Math.random()*26)
+  finalPassword.push(uppercase[randomCharacter])
+};
+if (isNumber == true) {
+  var randomCharacter = Math.floor(Math.random()*10)
+  finalPassword.push(number[randomCharacter])
+};
 if (isSpecial == true) {
-  var randomCharacter = math.floor(math.random()*8)
-  finalPassword.push(specials(randomCharacter))
-}
+  var randomCharacter = Math.floor(Math.random()*8)
+  finalPassword.push(specials[randomCharacter])
+};
 
-//Add event listener to gen button
-generateBtn.addEventListener("click", writePassword);
-
-
-//place holder array > we need to put all the selected options into here
-var finalPassword [];
+//filling the password box with the array and changing it to a string
+var finalPasswordString = finalPassword.join("")
+  var passwordText = document.querySelector("#password");
+  passwordText.value = finalPasswordString;
+};
